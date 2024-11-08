@@ -8,6 +8,7 @@ from flask import Flask,request,jsonify
 #Creating app of Flask 
 app = Flask(__name__)
 
+#Get Methods
 @app.route("/")
 def home():
     return "This is Home"
@@ -26,6 +27,13 @@ def get_student(student_id):
         student["Marks"]=marks
 
     return jsonify(student),200
+
+#post Method
+@app.route("/create-user",methods=["POST"])
+def create_user():
+    data = request.get_json()
+
+    return jsonify(data),201
 
 #starting of Main 
 if __name__ == "__main__":
