@@ -11,6 +11,22 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return "This is Home"
+
+@app.route("/get-student/<student_id>")
+def get_student(student_id):
+    student ={
+        "id":student_id,
+        "name" : "sai Kumar",
+        "Class" : "Intermediate"
+    }
+    # if we sent data to api using Query Parameter called Marks then we can use them in like this
+    marks = request.args.get("marks")
+
+    if marks:
+        student["Marks"]=marks
+
+    return jsonify(student),200
+
 #starting of Main 
 if __name__ == "__main__":
     app.run(debug=True)
